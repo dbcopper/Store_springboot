@@ -138,6 +138,35 @@
 			</div>
 		</footer>
 		<!--页脚结束-->
+		<script type="text/javascript">
+			/*监听注册按钮是否被点击*/
+			/*使用id选择器*/
+			$("#btn-reg").click(function () {
+				/*发送ajax的异步请求*/
+				console.log($("#form-reg").serialize());
+				$.ajax({
+					url:"/users/reg",//表示请求的地址，不能包含参数列表部分的内容，例如localhost：8080/users/reg
+					type:"POST",//请求类型，get，post
+					/*使用选择器选中表单,serialize是jqury中的方法，可以自动地获取表单中地序列数据*/
+					data:$("#form-reg").serialize(),//向指定的请求url地址提交的数据，例如：data：“username=tom&pwd=123”
+					dataType:"JSON",//提交的数据类型，数据的类型一般指定为json类型
+					success: function(json){
+					//服务器正常响应客户端
+						if(json.state == 200){
+							alert("注册成功");
+						}else{
+							alert("注册失败");
+						}
+					},
+					error:function(xhr){
+					//服务器未正常响应客户端
+						/*xhr.stauts不是自己封装的state，是官网封装的*/
+						alert("注册时产生未知的错误"+xhr.status);
+					}
+				});
+			});
+			/*发送ajax（）的异步请求完成用户注册功能*/
+		</script>
 	</body>
 
 </html>

@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 /*将这个类交给spring进行管理*/
 //@Controller
 @RestController // =@Controller+@ResponseBody
+/*users相当于一级目录*/
 @RequestMapping("users")
 public class UserController extends BaseController{
     @Autowired
     private IUserService userService;
+    /*reg相当于二级目录*/
     @RequestMapping("reg")
     //@ResponseBody//响应结果以json格式进行，给到前端
     /*Void 表示无返回值*/
